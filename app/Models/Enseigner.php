@@ -5,11 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WelcomeController extends Model
+class Enseigner extends Model
 {
-    use HasFactory;
+    protected $fillable =['cours_id', 'user_id'];
 
-    public function index(){
-        return view('welcome');
-    }
+    use HasFactory;
 }

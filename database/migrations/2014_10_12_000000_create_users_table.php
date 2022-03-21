@@ -15,9 +15,15 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->unsignedBigInteger('classe_id');
+            $table->string('nom');
+            $table->string('prenom');
+            $table->string('telephone');
+            $table->string('adresse');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+            $table->enum('profil', ['eleve', 'admin', 'enseignant']);
+            $table->foreign('classe_id')->references('id')->on('classes')->nullable(true);
+            $table->timestamp('email_verified_at')->nullable(true);
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
