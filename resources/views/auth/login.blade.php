@@ -21,7 +21,7 @@
                         </p>
                         <p>
                             <label for="email" class="mb-2 text-info"><b>Mot de passe:</b></label>
-                            <input type="email" name='email' placeholder="Votre Email svp *" class="form-control p-3">
+                            <input type="text" name='password' placeholder="Votre Email svp *" class="form-control p-3">
                         </p>
                         <p class="text-center">
                             <button type="submit" class="btn btn-lg btn-outline-info">Se connecter</button>

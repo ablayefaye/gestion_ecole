@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AdminGestionEnseignantController;
+use App\Http\Controllers\AdminProfilController;
 use App\Http\Controllers\WelcomeAdminController;
 use App\Http\Controllers\WelcomeStudentController;
 use App\Http\Controllers\WelcomeTeacherController;
@@ -19,15 +21,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [WelcomeController::class,'index']);
 
-// route for administrator
+// ******************* route for administrator *****************
 Route::get('/welcome_admin', [WelcomeAdminController::class,'welcome_admin'])->middleware(['auth'])->name('welcome_admin');
+// resource gestion enseignant
+Route::resource('/admin/enseignant',AdminGestionEnseignantController::class)->middleware(['auth']);
+// profil admin
+Route::get('admin/profil',[AdminProfilController::class,'admin_profil'])->name('admin_profil');
 
-
-// route for teacher
+// ******************* route for teacher *****************
 Route::get('/welcome_teacher', [WelcomeTeacherController::class,'welcome_teacher'])->middleware(['auth'])->name('welcome_teacher');
 
 
-// route for student
+// ******************* route for student *****************
 Route::get('/welcome_student', [WelcomeStudentController::class,'welcome_student'])->middleware(['auth'])->name('welcome_student');
 
 
