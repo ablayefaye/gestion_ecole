@@ -3,9 +3,9 @@
 use App\Http\Controllers\AdminGestionEnseignantController;
 use App\Http\Controllers\AdminProfilController;
 use App\Http\Controllers\WelcomeAdminController;
+use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\WelcomeStudentController;
 use App\Http\Controllers\WelcomeTeacherController;
-use App\Models\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WelcomeController::class,'index']);
+Route::get('/', [WelcomeController::class,'welcome']);
 
 // ******************* route for administrator *****************
 Route::get('/welcome_admin', [WelcomeAdminController::class,'welcome_admin'])->middleware(['auth'])->name('welcome_admin');

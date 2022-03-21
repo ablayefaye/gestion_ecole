@@ -9,7 +9,7 @@ class Cours extends Model
 {
     protected $fillable =[ 'nom_cours', 'description', 'fichiers', 'classe_id'];
 
-        public function Enseignant()
+        public function User()
         {
             return $this->belongsToMany(Users::class, Enseigner::class);
         }

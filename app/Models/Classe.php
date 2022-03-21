@@ -9,9 +9,9 @@ class Classe extends Model
 {
     use HasFactory;
     protected $fillable =['annee', 'nom_clas'];
-    public function Eleve(){
+    public function User(){
 
-        return $this->hasMany(Eleve::class);
+        return $this->hasMany(User::class);
     }
     public function Cours(){
 

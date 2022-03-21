@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('classe_id');
+            $table->unsignedBigInteger('classe_id')->nullable();
             $table->string('nom');
             $table->string('prenom');
             $table->string('telephone');
             $table->string('adresse');
             $table->string('email')->unique();
             $table->enum('profil', ['eleve', 'admin', 'enseignant']);
-            $table->foreign('classe_id')->references('id')->on('classes')->nullable(true);
+            $table->foreign('classe_id')->references('id')->on('classes');
             $table->timestamp('email_verified_at')->nullable(true);
             $table->string('password');
             $table->rememberToken();

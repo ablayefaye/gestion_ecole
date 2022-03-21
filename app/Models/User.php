@@ -14,9 +14,7 @@ class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
-    use HasProfilePhoto;
     use Notifiable;
-    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -33,6 +31,10 @@ class User extends Authenticatable
         'password',
         'classe_id',
     ];
+    public function Cours()
+        {
+            return $this->belongsToMany(Cours::class, Enseigner::class);
+        }
 
      /**
      * The attributes that should be hidden for serialization.
