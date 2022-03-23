@@ -19,14 +19,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [WelcomeController::class,'welcome']);
+Route::get('/', [WelcomeController::class,'welcome'])->name('welcome_app');
 
 // ******************* route for administrator *****************
 Route::get('/welcome_admin', [WelcomeAdminController::class,'welcome_admin'])->middleware(['auth'])->name('welcome_admin');
 // resource gestion enseignant
 Route::resource('/admin/enseignant',AdminGestionEnseignantController::class)->middleware(['auth']);
 // profil admin
-Route::get('admin/profil',[AdminProfilController::class,'admin_profil'])->name('admin_profil');
+Route::get('admin/profil',[AdminProfilController::class,'admin_profil'])->middleware(['auth'])->name('admin_profil');
+// update profil
+Route::post('admin/profil',[AdminProfilController::class,'admin_update_profil'])->middleware(['auth'])->name('admin_update_profil');
+
+
+
 
 // ******************* route for teacher *****************
 Route::get('/welcome_teacher', [WelcomeTeacherController::class,'welcome_teacher'])->middleware(['auth'])->name('welcome_teacher');

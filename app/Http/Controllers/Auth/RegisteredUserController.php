@@ -20,6 +20,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
+        dd(Hash::make('layefayenevrose'));
         return view('auth.register');
     }
 
@@ -33,7 +34,8 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        var_dump('');
+
+
         $request->validate([
             'prenom' => 'required|string|max:255',
             'nom' => 'required|string|max:255',
@@ -59,6 +61,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect()->route('login');
     }
 }

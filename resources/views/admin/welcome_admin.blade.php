@@ -14,7 +14,7 @@
                         <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, distinctio doloremque corporis voluptates amet ullam aliquid unde repellat, quae, adipisci laborum? Molestias, facilis natus exercitationem dolorum quasi sint culpa corporis.</p>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="" class="btn btn-outline-dark btn-lg">voir enseignants</a>
+                        <a href="{{ route('enseignant.index') }}" class="btn btn-outline-dark btn-lg">voir enseignants</a>
                     </div>
                 </div>
             </div>

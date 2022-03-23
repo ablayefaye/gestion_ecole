@@ -22,7 +22,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-5">
         <div class="container-fluid">
-          <a class="navbar-brand" href="#"><b>SenEcole</b></a>
+          <a class="navbar-brand" href="{{ route('welcome_admin') }}"><b>SenEcole</b></a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>

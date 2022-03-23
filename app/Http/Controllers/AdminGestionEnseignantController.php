@@ -1,8 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use Illuminate\Contracts\Pagination\Paginator;
 
 class AdminGestionEnseignantController extends Controller
 {
@@ -13,7 +18,8 @@ class AdminGestionEnseignantController extends Controller
      */
     public function index()
     {
-        return view('admin.gestion_enseignant.index');
+        $users = User::where('profil','=','enseignant')->paginate(5);
+        return view('admin.gestion_enseignant.index', compact('users'));
     }
 
     /**
@@ -34,7 +40,32 @@ class AdminGestionEnseignantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+            'prenom' => 'required|string|max:255',
+            'nom' => 'required|string|max:255',
+            'adresse' => 'required|string|max:255',
+            'telephone' => 'required|string|max:255',
+            // 'profil' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            // 'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'prenom' => $request->prenom,
+            'nom' => $request->nom,
+            'adresse' => $request->adresse,
+            'telephone' => $request->telephone,
+            'classe_id' => null,
+            'profil' => 'enseignant',
+            'email' => $request->email,
+            'password' => Hash::make('projetlicence3'),
+        ]);
+
+        event(new Registered($user));
+
+
+        return back()->with('teacher_created','Enseignant Enregistré avec succes.');
     }
 
     /**
@@ -68,7 +99,24 @@ class AdminGestionEnseignantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+
+        $request->validate([
+            'prenom' => 'required|string|max:255',
+            'nom' => 'required|string|max:255',
+            'adresse' => 'required|string|max:255',
+            'telephone' => 'required|string|max:255',
+        ]);
+
+        $user = User::find($id);
+        $user->prenom =  $request->prenom;
+        $user->nom =  $request->nom;
+        $user->telephone =  $request->telephone;
+        $user->adresse =  $request->adresse;
+        $user->save();
+
+        return back()->with('message_update','Enseignant mis à jour.');
+
     }
 
     /**
@@ -79,6 +127,8 @@ class AdminGestionEnseignantController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // dd('hello');
+        User::find($id)->delete();
+        return back()->with('delete_message','Enseigner supprimé avec succes.');
     }
 }
