@@ -28,12 +28,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        // dd('hello');
         $request->authenticate();
 
         $request->session()->regenerate();
+        $connected_user_profil = auth()->user()->profil;
 
-        return redirect()->route('welcome_admin');
+        if ($connected_user_profil == 'admin') {
+            return redirect()->route('welcome_admin');
+        }elseif($connected_user_profil == 'enseignant') {
+            return redirect()->route('welcome_teacher');
+        }
+
     }
 
     /**

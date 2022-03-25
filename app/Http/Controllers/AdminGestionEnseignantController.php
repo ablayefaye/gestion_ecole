@@ -19,7 +19,9 @@ class AdminGestionEnseignantController extends Controller
     public function index()
     {
         $users = User::where('profil','=','enseignant')->paginate(5);
-        return view('admin.gestion_enseignant.index', compact('users'));
+        $admin = auth()->user();
+        $title = "Liste Enseignant";
+        return view('admin.gestion_enseignant.index', compact('users','title','admin'));
     }
 
     /**

@@ -9,6 +9,7 @@ class WelcomeAdminController extends Controller
 {
     public function welcome_admin(){
         $admin = auth()->user();
-        return view('admin.welcome_admin',compact('admin'));
+        $title = 'Accueil Admin';
+        return view('admin.welcome_admin',compact('admin','title'));
     }
 }

@@ -4,8 +4,8 @@ admin | gestion enseignant
 @endsection
 
 @section('content')
-<div class="container mt-3">
-    <div class="alert alert-warning text-center">
+<div class="container-fluid">
+    <div class="bg-dark text-center mb-1 text-white p-3">
         <b>Liste Enseignants</b>
     </div>
     @if(Session::has('teacher_created'))
@@ -24,7 +24,7 @@ admin | gestion enseignant
     </p>
     @endif
 
-    <div class="text-end pr-2">
+    <div class="text-end">
         <button class="btn btn-lg btn-outline-warning" data-bs-toggle="modal" data-bs-target="#addTeacher"><i class="fa fa-plus" aria-hidden="true"></i></button>
 
     </div>
