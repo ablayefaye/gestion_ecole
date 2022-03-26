@@ -10,7 +10,8 @@ class AdminProfilController extends Controller
 {
     public function admin_profil(){
         $admin = auth()->user();
-        return view('admin.admin_profil',compact('admin'));
+        $title = "Mon Profil";
+        return view('admin.admin_profil',compact('admin','title'));
     }
 
     public function admin_update_profil(Request $request){

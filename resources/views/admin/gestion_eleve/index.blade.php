@@ -1,16 +1,16 @@
 @extends('templates.admin_template')
 @section('title')
-admin | gestion enseignant
+admin | gestion élèves
 @endsection
 
 @section('content')
 <div class="container-fluid">
     <div class="bg-dark text-center mb-1 text-white p-3">
-        <b>Liste Enseignants</b>
+        <b>Liste Élèves</b>
     </div>
-    @if(Session::has('teacher_created'))
+    @if(Session::has('eleve_created'))
         <p class="text-center text-success">
-            <b>{{ Session::get('teacher_created') }}</b>
+            <b>{{ Session::get('eleve_created') }}</b>
         </p>
     @endif
     @if(Session::has('delete_message'))
@@ -25,16 +25,16 @@ admin | gestion enseignant
     @endif
 
     <div class="text-end">
-        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#addTeacher"><i class="fa fa-plus" aria-hidden="true"></i> enseignant</button>
+        <button class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#addTeacher"><i class="fa fa-plus" aria-hidden="true"></i> élève</button>
 
     </div>
-    <form method="POST" action="{{ route('enseignant.store') }}">
+    <form method="POST" action="{{ route('eleve.store') }}">
         @csrf
         <div class="modal fade" id="addTeacher" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Enregistrement Enseignant</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Enregistrement Élèves</h5>
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -42,7 +42,7 @@ admin | gestion enseignant
 
                             <div class="card-body">
                                 <p class="card-text">
-                                    <input type="hidden" name="profil" value="enseignant">
+                                    <input type="hidden" name="profil" value="eleve">
                                     <p>
                                         <label for="prenom" class="mb-2 text-dark"><b>Prénom:</b></label>
                                         <input type="text" name='prenom' placeholder="Votre Prénom svp *" class="form-control p-3">
@@ -66,7 +66,7 @@ admin | gestion enseignant
 
 
                                     <p class="text-center">
-                                        <button type="submit" class="btn btn-lg btn-outline-dark">Enregistrer Enseignant</button>
+                                        <button type="submit" class="btn btn-lg btn-outline-dark">Enregistrer Élève</button>
                                     </p>
 
 
@@ -104,7 +104,7 @@ admin | gestion enseignant
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header bg-dark text-white">
-                              <h5 class="modal-title" id="exampleModalLabel">Supprission Enseignant {{$user->id}} ...</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Supprission Élève {{$user->id}} ...</h5>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
@@ -112,7 +112,7 @@ admin | gestion enseignant
                             </div>
                             <div class="modal-footer">
                               <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Non, annuler</button>
-                              <form action="{{ route('enseignant.destroy', ['enseignant'=>$user->id]) }}" method="post">
+                              <form action="{{ route('eleve.destroy', ['eleve'=>$user->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger btn-sm">Oui, je suis sûre</button>
@@ -124,14 +124,14 @@ admin | gestion enseignant
                 </td>
                 <td>
                     <button class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#edit{{$user->id}}"><i class="fas fa-edit"></i></button>
-                    <form method="POST" action="{{ route('enseignant.update', ['enseignant'=>$user->id]) }}">
+                    <form method="POST" action="{{ route('eleve.update', ['eleve'=>$user->id]) }}">
                         @csrf
                         @method('PUT')
                         <div class="modal text-start fade" id="edit{{$user->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                               <div class="modal-content">
                                 <div class="modal-header">
-                                  <h5 class="modal-title" id="exampleModalLabel">Modification Enseignant #{{$user->id}}</h5>
+                                  <h5 class="modal-title" id="exampleModalLabel">Modification Élève #{{$user->id}}</h5>
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
@@ -139,7 +139,7 @@ admin | gestion enseignant
 
                                             <div class="card-body">
                                                 <p class="card-text">
-                                                    <input type="hidden" name="profil" value="enseignant">
+                                                    <input type="hidden" name="profil" value="eleve">
                                                     <p>
                                                         <label for="prenom" class="mb-2 text-dark"><b>Prénom:</b></label>
                                                         <input value="{{$user->prenom}}" type="text" name='prenom' placeholder="Votre Prénom svp *" class="form-control p-3">
@@ -158,7 +158,7 @@ admin | gestion enseignant
                                                     </p>
 
                                                     <p class="text-center">
-                                                        <button type="submit" class="btn btn-lg btn-outline-dark">Modifier Enseignant</button>
+                                                        <button type="submit" class="btn btn-lg btn-outline-dark">Modifier Élève</button>
                                                     </p>
 
 
@@ -203,9 +203,9 @@ admin | gestion enseignant
     <div class="alert alert-dark">
         <strong class="text-dark text-muted">
             @if (count($users)==0)
-                {{count($users)}}  enseignant
+                {{count($users)}}  élève
             @else
-                {{count($users)}} enseignants
+                {{count($users)}} élèves
             @endif
         </strong>
     </div>

@@ -5,7 +5,7 @@ admin | gestion enseignant
 
 @section('content')
 <div class="container mt-2">
-    <div class="alert alert-warning text-center">
+    <div class="bg-dark p-3 text-white text-center">
         <b>Mon profil</b>
     </div>
     @if(Session::has('update_profile'))
@@ -14,6 +14,9 @@ admin | gestion enseignant
     </p>
     @endif
     <div class="container p-2  bg-light">
+        <div class="text-center">
+            <img src="{{ asset('images/profil.png') }}" style="width: 13em" class="img-fluid">
+        </div>
         <form action="{{ route('admin_profil') }}" method="post">
             @csrf
             <div class="row">

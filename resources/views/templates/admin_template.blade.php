@@ -58,7 +58,7 @@
               </a>
             </li>
             <li>
-              <a href="#" class="nav-link text-white">
+              <a href="{{ route('eleve.index') }}" class="nav-link text-white">
                 <i class="fa fa-toolbox" aria-hidden="true"></i>
                 Gestion Élève
               </a>
@@ -73,10 +73,13 @@
           </ul>
           <hr>
           <div class="dropdown">
-            <a href="#" class="d-flex align-items-center text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#disconnect">
-              {{-- <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2"> --}}
-              <strong>{{$admin->prenom}}</strong>&nbsp;&nbsp;<i class="fas fa-sign-out-alt text-warning"></i>
+            <a href="{{ route('admin_profil') }}" class="d-flex align-items-center text-white text-decoration-none">
+               <i class="fa text-warning fa-user-circle" aria-hidden="true"></i><b>&nbsp;&nbsp;{{$admin->prenom}}</b>
             </a>
+            <a href="#" class="d-flex align-items-center text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#disconnect">
+              <strong>Se déconnecter</strong>&nbsp;&nbsp;<i class="fas fa-sign-out-alt text-warning"></i>
+            </a>
+
 
           </div>
         </div>

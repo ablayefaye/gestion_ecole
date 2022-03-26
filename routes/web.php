@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminEleveController;
 use App\Http\Controllers\AdminGestionEnseignantController;
 use App\Http\Controllers\AdminProfilController;
 use App\Http\Controllers\WelcomeAdminController;
@@ -29,6 +30,8 @@ Route::resource('/admin/enseignant',AdminGestionEnseignantController::class)->mi
 Route::get('admin/profil',[AdminProfilController::class,'admin_profil'])->middleware(['auth'])->name('admin_profil');
 // update profil
 Route::post('admin/profil',[AdminProfilController::class,'admin_update_profil'])->middleware(['auth'])->name('admin_update_profil');
+// resource gestion eleve
+Route::resource('/admin/eleve',AdminEleveController::class)->middleware(['auth']);
 
 
 
